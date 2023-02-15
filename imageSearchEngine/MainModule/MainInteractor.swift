@@ -10,35 +10,29 @@ import Foundation
 class MainInteractor: IMainInteractor {
     
     var networkService: INetworkService
-    var imagesData = [ImageData]() {
-        didSet {
-            createDatasForImages(imagesData: imagesData)
-        }
-    }
-    var completionHandlerForData: (([Data]) -> Void)?
     
     required init(networkService: INetworkService) {
         self.networkService = networkService
     }
     
-    func createImageDatasArray(urlString: String, completionHandler: @escaping (([ImageData]) -> Void)) {
+    func createImageDatasArray(request: String, completionHandler: @escaping (([ImageData]) -> Void), completionHandlerForData: @escaping (([Data]) -> Void)) {
+        let urlString = "https://serpapi.com/playground?q=\(request)&tbm=isch&ijn=0"
         guard let url = URL(string: urlString) else { return }
         networkService.loadImagesData(from: url, completionHandler: { [weak self] datas in
-            guard let self = self else { return }
-            self.imagesData = datas
             completionHandler(datas)
+            guard let self = self else { return }
+            self.createDatasForImages(imagesData: datas, completionHandlerForData: completionHandlerForData)
         })
     }
     
-    private func createDatasForImages(imagesData: [ImageData]) {
+    private func createDatasForImages(imagesData: [ImageData], completionHandlerForData: @escaping (([Data]) -> Void)) {
         var datasForImages = [Data]()
         
         for imageData in imagesData {
             guard let url = URL(string: imageData.imageUrl) else { return }
-            networkService.loadDataImageForSingleData(from: url) { [weak self] data in
-                guard let self = self else { return }
+            networkService.loadDataImageForSingleData(from: url) {data in
                 datasForImages.append(data)
-                self.completionHandlerForData?(datasForImages)
+                completionHandlerForData(datasForImages)
             }
         }
     }

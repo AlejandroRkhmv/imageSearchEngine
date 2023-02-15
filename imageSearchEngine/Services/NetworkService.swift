@@ -16,11 +16,11 @@ class NetworkService: INetworkService {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             if let error = error {
-                print(error.localizedDescription)
+                print(error.localizedDescription, "1")
             }
             if let data = data {
                 guard let imagesResult = self.jsonParser.parseJSON(with: data) else { return }
-                guard let imagesData = self.imageDataCreator.createImageDataObjects(from: imagesResult) else { return }
+                guard let imagesData = self.imageDataCreator.createImageDataObjects(from: imagesResult.imagesResults) else { return }
                 completionHandler(imagesData)
             }
         }
@@ -31,7 +31,7 @@ class NetworkService: INetworkService {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             if let error = error {
-                print(error.localizedDescription)
+                print(error.localizedDescription, "2")
             }
             if let data = data {
                 completionHandler(data)

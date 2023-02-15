@@ -37,6 +37,7 @@
 		210B8EB5299D3C1F00499ABA /* INetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EB4299D3C1F00499ABA /* INetworkService.swift */; };
 		210B8EB7299D3E9B00499ABA /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EB6299D3E9B00499ABA /* JsonParser.swift */; };
 		210B8EB9299D427C00499ABA /* ImageDataCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EB8299D427C00499ABA /* ImageDataCreator.swift */; };
+		210B8EBB299D6A2B00499ABA /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EBA299D6A2B00499ABA /* ImageCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		210B8EB4299D3C1F00499ABA /* INetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INetworkService.swift; sourceTree = "<group>"; };
 		210B8EB6299D3E9B00499ABA /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 		210B8EB8299D427C00499ABA /* ImageDataCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataCreator.swift; sourceTree = "<group>"; };
+		210B8EBA299D6A2B00499ABA /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				210B8EAA299CC9D800499ABA /* Extensions */,
 				210B8EB1299CCA1600499ABA /* Protocols */,
 				210B8E7E299CBEE300499ABA /* MainView.swift */,
+				210B8EBA299D6A2B00499ABA /* ImageCollectionViewCell.swift */,
 				210B8E6C299CBAB500499ABA /* MainViewController.swift */,
 				210B8E82299CBF0800499ABA /* MainInteractor.swift */,
 				210B8E80299CBEF900499ABA /* MainPresenter.swift */,
@@ -296,6 +299,7 @@
 				210B8E90299CBFB900499ABA /* IRouter.swift in Sources */,
 				210B8E81299CBEF900499ABA /* MainPresenter.swift in Sources */,
 				210B8E8E299CBFAD00499ABA /* IBuilder.swift in Sources */,
+				210B8EBB299D6A2B00499ABA /* ImageCollectionViewCell.swift in Sources */,
 				210B8EB3299D3AA000499ABA /* ImageData.swift in Sources */,
 				210B8E6D299CBAB500499ABA /* MainViewController.swift in Sources */,
 				210B8EB7299D3E9B00499ABA /* JsonParser.swift in Sources */,

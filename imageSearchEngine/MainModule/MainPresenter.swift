@@ -7,27 +7,26 @@
 
 import Foundation
 
-class MainPresenter {
+class MainPresenter: IMainPresenter {
     
+    weak var mainViewController: IMainViewController?
     var mainInteractor: IMainInteractor
     var imagesData = [ImageData]()
     var datasForImages = [Data]()
     
-    init(mainInteractor: IMainInteractor) {
+    required init(mainViewController: IMainViewController?, mainInteractor: IMainInteractor) {
+        self.mainViewController = mainViewController
         self.mainInteractor = mainInteractor
     }
     
-    func userEnterRequestAndPressSearch(urlString: String, completionHandler: @escaping (([ImageData]) -> Void)) {
-        mainInteractor.createImageDatasArray(urlString: urlString) { [weak self] imagesData in
+    func userEnterRequestAndPressSearch(request: String) {
+        mainInteractor.createImageDatasArray(request: request) { [weak self] imagesData in
             guard let self = self else { return }
             self.imagesData = imagesData
-        }
-    }
-    
-    func fillDatasForImages() {
-        mainInteractor.completionHandlerForData = { [weak self] datas in
+        } completionHandlerForData: { [weak self] datasForImages in
             guard let self = self else { return }
-            self.datasForImages = datas
+            self.datasForImages = datasForImages
         }
+        mainViewController?.reloadData()
     }
 }

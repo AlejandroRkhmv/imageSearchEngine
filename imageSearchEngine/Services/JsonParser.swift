@@ -9,13 +9,13 @@ import Foundation
 
 class JsonParser {
     
-    func parseJSON(with data: Data) -> [ImagesResult]? {
+    func parseJSON(with data: Data) -> GoogleImageAPI? {
         let decoder = JSONDecoder()
         do {
-            let imagesResults = try decoder.decode([ImagesResult].self, from: data)
+            let imagesResults = try decoder.decode(GoogleImageAPI.self, from: data)
             return imagesResults
         } catch let error as NSError {
-            print(error.localizedDescription)
+            print(error.localizedDescription, "3")
         }
         return nil
     }

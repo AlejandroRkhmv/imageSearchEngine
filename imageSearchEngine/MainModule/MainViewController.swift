@@ -9,7 +9,8 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    var mainView: MainView!
+    var mainView: MainView?
+    var mainPresenter: IMainPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()

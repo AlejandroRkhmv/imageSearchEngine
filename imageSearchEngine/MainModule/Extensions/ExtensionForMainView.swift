@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol MainViewControllerDelegate {
+    func sendRequestToMainPresenter(request: String)
+}
+
+
 // MARK: - create UI elements
 extension MainView {
     
@@ -50,12 +55,18 @@ extension MainView {
         setConstraintsForRequestLabel()
     }
 
+    // MARK: - createImagesCollectionView
     func createImagesCollectionView() {
         let layout = UICollectionViewFlowLayout()
         imagesCollectionView = UICollectionView(frame: CGRect(x: 0, y: 225, width: self.bounds.size.width, height: self.bounds.size.height - 200), collectionViewLayout: layout)
         guard let imagesCollectionView = imagesCollectionView else { return }
-        imagesCollectionView.backgroundColor = .purple
         self.addSubview(imagesCollectionView)
+        
+        registerForCell(collectionView: imagesCollectionView)
+    }
+    
+    internal func registerForCell(collectionView: UICollectionView) {
+        collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
     }
 
     // MARK: - makeSearchLabel
@@ -188,6 +199,7 @@ extension MainView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == searchTextField {
             guard let requestText = textField.text else { return false }
+            delegate?.sendRequestToMainPresenter(request: requestText)
             print(requestText)
             requestLabel.text = requestText
             requestLabel.isHidden = false

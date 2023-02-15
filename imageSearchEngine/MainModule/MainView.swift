@@ -19,6 +19,8 @@ class MainView: UIView {
     let layout = UICollectionViewFlowLayout()
     var imagesCollectionView: UICollectionView?
     
+    var delegate: MainViewControllerDelegate?
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         createsearchLabelView()
@@ -27,6 +29,4 @@ class MainView: UIView {
         cancelButtonTarget()
         createImagesCollectionView()
     }
-    
-    
 }
