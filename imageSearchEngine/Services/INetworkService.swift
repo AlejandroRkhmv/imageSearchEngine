@@ -1,5 +1,5 @@
 //
-//  ModelAPI.swift
+//  INetworkService.swift
 //  imageSearchEngine
 //
 //  Created by Александр Рахимов on 15.02.2023.

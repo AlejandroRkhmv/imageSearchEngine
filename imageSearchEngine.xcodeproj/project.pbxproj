@@ -17,7 +17,7 @@
 		210B8E83299CBF0900499ABA /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8E82299CBF0800499ABA /* MainInteractor.swift */; };
 		210B8E85299CBF2300499ABA /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8E84299CBF2300499ABA /* Router.swift */; };
 		210B8E87299CBF2E00499ABA /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8E86299CBF2E00499ABA /* Builder.swift */; };
-		210B8E8B299CBF8B00499ABA /* ModelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8E8A299CBF8B00499ABA /* ModelAPI.swift */; };
+		210B8E8B299CBF8B00499ABA /* GoogleImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8E8A299CBF8B00499ABA /* GoogleImageAPI.swift */; };
 		210B8E8E299CBFAD00499ABA /* IBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8E8D299CBFAD00499ABA /* IBuilder.swift */; };
 		210B8E90299CBFB900499ABA /* IRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8E8F299CBFB900499ABA /* IRouter.swift */; };
 		210B8E94299CC08000499ABA /* ImagePresentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8E93299CC08000499ABA /* ImagePresentViewController.swift */; };
@@ -33,6 +33,8 @@
 		210B8EAC299CC9F400499ABA /* IMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EAB299CC9F400499ABA /* IMainViewController.swift */; };
 		210B8EAE299CCA0100499ABA /* IMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EAD299CCA0100499ABA /* IMainInteractor.swift */; };
 		210B8EB0299CCA0B00499ABA /* IMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EAF299CCA0B00499ABA /* IMainPresenter.swift */; };
+		210B8EB3299D3AA000499ABA /* ImageDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EB2299D3AA000499ABA /* ImageDataModel.swift */; };
+		210B8EB5299D3C1F00499ABA /* INetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EB4299D3C1F00499ABA /* INetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +50,7 @@
 		210B8E82299CBF0800499ABA /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
 		210B8E84299CBF2300499ABA /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		210B8E86299CBF2E00499ABA /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
-		210B8E8A299CBF8B00499ABA /* ModelAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAPI.swift; sourceTree = "<group>"; };
+		210B8E8A299CBF8B00499ABA /* GoogleImageAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleImageAPI.swift; sourceTree = "<group>"; };
 		210B8E8D299CBFAD00499ABA /* IBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBuilder.swift; sourceTree = "<group>"; };
 		210B8E8F299CBFB900499ABA /* IRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRouter.swift; sourceTree = "<group>"; };
 		210B8E93299CC08000499ABA /* ImagePresentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePresentViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +66,8 @@
 		210B8EAB299CC9F400499ABA /* IMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMainViewController.swift; sourceTree = "<group>"; };
 		210B8EAD299CCA0100499ABA /* IMainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMainInteractor.swift; sourceTree = "<group>"; };
 		210B8EAF299CCA0B00499ABA /* IMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMainPresenter.swift; sourceTree = "<group>"; };
+		210B8EB2299D3AA000499ABA /* ImageDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataModel.swift; sourceTree = "<group>"; };
+		210B8EB4299D3C1F00499ABA /* INetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,7 +158,8 @@
 		210B8E8C299CBF9600499ABA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				210B8E8A299CBF8B00499ABA /* ModelAPI.swift */,
+				210B8E8A299CBF8B00499ABA /* GoogleImageAPI.swift */,
+				210B8EB2299D3AA000499ABA /* ImageDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 		210B8EA5299CC25B00499ABA /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				210B8EB4299D3C1F00499ABA /* INetworkService.swift */,
 				210B8EA3299CC25300499ABA /* NetworkService.swift */,
 			);
 			path = Services;
@@ -283,6 +289,7 @@
 				210B8E90299CBFB900499ABA /* IRouter.swift in Sources */,
 				210B8E81299CBEF900499ABA /* MainPresenter.swift in Sources */,
 				210B8E8E299CBFAD00499ABA /* IBuilder.swift in Sources */,
+				210B8EB3299D3AA000499ABA /* ImageDataModel.swift in Sources */,
 				210B8E6D299CBAB500499ABA /* MainViewController.swift in Sources */,
 				210B8EA7299CC9B400499ABA /* ExtensionForMainView.swift in Sources */,
 				210B8E7F299CBEE300499ABA /* MainView.swift in Sources */,
@@ -293,11 +300,12 @@
 				210B8E9B299CC12D00499ABA /* ImagePresentPresenter.swift in Sources */,
 				210B8EA0299CC1BB00499ABA /* WebView.swift in Sources */,
 				210B8E94299CC08000499ABA /* ImagePresentViewController.swift in Sources */,
-				210B8E8B299CBF8B00499ABA /* ModelAPI.swift in Sources */,
+				210B8E8B299CBF8B00499ABA /* GoogleImageAPI.swift in Sources */,
 				210B8E83299CBF0900499ABA /* MainInteractor.swift in Sources */,
 				210B8EAC299CC9F400499ABA /* IMainViewController.swift in Sources */,
 				210B8EA4299CC25300499ABA /* NetworkService.swift in Sources */,
 				210B8EA2299CC1CD00499ABA /* WebPresenter.swift in Sources */,
+				210B8EB5299D3C1F00499ABA /* INetworkService.swift in Sources */,
 				210B8EB0299CCA0B00499ABA /* IMainPresenter.swift in Sources */,
 				210B8E87299CBF2E00499ABA /* Builder.swift in Sources */,
 				210B8E9D299CC18A00499ABA /* WebViewController.swift in Sources */,

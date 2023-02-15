@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - create UI elements
 extension MainView {
     
     func createsearchLabelView() {
@@ -187,6 +188,7 @@ extension MainView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == searchTextField {
             guard let requestText = textField.text else { return false }
+            print(requestText)
             requestLabel.text = requestText
             requestLabel.isHidden = false
             searchTextField.resignFirstResponder()
