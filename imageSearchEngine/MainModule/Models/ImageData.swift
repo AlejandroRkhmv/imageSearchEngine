@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ImageDataModel {
+struct ImageData {
     
     let imageUrl: String
     let webLink: String

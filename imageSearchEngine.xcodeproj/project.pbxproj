@@ -33,8 +33,10 @@
 		210B8EAC299CC9F400499ABA /* IMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EAB299CC9F400499ABA /* IMainViewController.swift */; };
 		210B8EAE299CCA0100499ABA /* IMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EAD299CCA0100499ABA /* IMainInteractor.swift */; };
 		210B8EB0299CCA0B00499ABA /* IMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EAF299CCA0B00499ABA /* IMainPresenter.swift */; };
-		210B8EB3299D3AA000499ABA /* ImageDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EB2299D3AA000499ABA /* ImageDataModel.swift */; };
+		210B8EB3299D3AA000499ABA /* ImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EB2299D3AA000499ABA /* ImageData.swift */; };
 		210B8EB5299D3C1F00499ABA /* INetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EB4299D3C1F00499ABA /* INetworkService.swift */; };
+		210B8EB7299D3E9B00499ABA /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EB6299D3E9B00499ABA /* JsonParser.swift */; };
+		210B8EB9299D427C00499ABA /* ImageDataCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EB8299D427C00499ABA /* ImageDataCreator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,8 +68,10 @@
 		210B8EAB299CC9F400499ABA /* IMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMainViewController.swift; sourceTree = "<group>"; };
 		210B8EAD299CCA0100499ABA /* IMainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMainInteractor.swift; sourceTree = "<group>"; };
 		210B8EAF299CCA0B00499ABA /* IMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMainPresenter.swift; sourceTree = "<group>"; };
-		210B8EB2299D3AA000499ABA /* ImageDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataModel.swift; sourceTree = "<group>"; };
+		210B8EB2299D3AA000499ABA /* ImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageData.swift; sourceTree = "<group>"; };
 		210B8EB4299D3C1F00499ABA /* INetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INetworkService.swift; sourceTree = "<group>"; };
+		210B8EB6299D3E9B00499ABA /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
+		210B8EB8299D427C00499ABA /* ImageDataCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataCreator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				210B8E8A299CBF8B00499ABA /* GoogleImageAPI.swift */,
-				210B8EB2299D3AA000499ABA /* ImageDataModel.swift */,
+				210B8EB2299D3AA000499ABA /* ImageData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -190,6 +194,8 @@
 			children = (
 				210B8EB4299D3C1F00499ABA /* INetworkService.swift */,
 				210B8EA3299CC25300499ABA /* NetworkService.swift */,
+				210B8EB6299D3E9B00499ABA /* JsonParser.swift */,
+				210B8EB8299D427C00499ABA /* ImageDataCreator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -285,12 +291,14 @@
 			files = (
 				210B8EA9299CC9CC00499ABA /* ExtensionForMainViewController.swift in Sources */,
 				210B8E97299CC10D00499ABA /* ImagePresentView.swift in Sources */,
+				210B8EB9299D427C00499ABA /* ImageDataCreator.swift in Sources */,
 				210B8EAE299CCA0100499ABA /* IMainInteractor.swift in Sources */,
 				210B8E90299CBFB900499ABA /* IRouter.swift in Sources */,
 				210B8E81299CBEF900499ABA /* MainPresenter.swift in Sources */,
 				210B8E8E299CBFAD00499ABA /* IBuilder.swift in Sources */,
-				210B8EB3299D3AA000499ABA /* ImageDataModel.swift in Sources */,
+				210B8EB3299D3AA000499ABA /* ImageData.swift in Sources */,
 				210B8E6D299CBAB500499ABA /* MainViewController.swift in Sources */,
+				210B8EB7299D3E9B00499ABA /* JsonParser.swift in Sources */,
 				210B8EA7299CC9B400499ABA /* ExtensionForMainView.swift in Sources */,
 				210B8E7F299CBEE300499ABA /* MainView.swift in Sources */,
 				210B8E85299CBF2300499ABA /* Router.swift in Sources */,

@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct GoogleImageAPI: Codable {
-
-    let imagesResults: [ImagesResult]
-
-    enum CodingKeys: String, CodingKey {
-        case imagesResults = "images_results"
-    }
-}
+//struct GoogleImageAPI: Codable {
+//
+//    let imagesResults: [ImagesResult]
+//
+//    enum CodingKeys: String, CodingKey {
+//        case imagesResults = "images_results"
+//    }
+//}
 
 struct ImagesResult: Codable {
     let position: Int
