@@ -58,16 +58,15 @@ extension MainView {
     // MARK: - createImagesCollectionView
     func createImagesCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        imagesCollectionView = UICollectionView(frame: CGRect(x: 0, y: 225, width: self.bounds.size.width, height: self.bounds.size.height - 200), collectionViewLayout: layout)
-        guard let imagesCollectionView = imagesCollectionView else { return }
-        self.addSubview(imagesCollectionView)
-        
-        registerForCell(collectionView: imagesCollectionView)
+        imagesCollectionView = UICollectionViewController(collectionViewLayout: layout)
+        imagesCollectionView?.collectionView.frame = CGRect(x: 0, y: 225, width: self.bounds.size.width, height: self.bounds.size.height - 200)
+        imagesCollectionView?.collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
+        imagesCollectionView?.collectionView.backgroundColor = .purple
+        guard let collectionView = imagesCollectionView?.collectionView else { return }
+        self.addSubview(collectionView)
     }
     
-    internal func registerForCell(collectionView: UICollectionView) {
-        collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
-    }
+    
 
     // MARK: - makeSearchLabel
     private func makeSearchLabel() {
@@ -132,7 +131,7 @@ extension MainView {
             self.searchLabelView.frame.origin.y = -75
             self.searchTextFieldView.frame.origin.y = 0
             self.requestLabelView.frame.origin.y = 75
-            self.imagesCollectionView?.frame.origin.y = 150
+            self.imagesCollectionView?.collectionView.frame.origin.y = 150
             self.searchTextField.frame.size.width = searchTextFieldView.bounds.size.width - 240
             self.cancelButton.isHidden = false
         }
@@ -169,7 +168,7 @@ extension MainView {
         self.searchLabelView.frame.origin.y = 0
         self.searchTextFieldView.frame.origin.y = 75
         self.requestLabelView.frame.origin.y = 150
-        self.imagesCollectionView?.frame.origin.y = 225
+        self.imagesCollectionView?.collectionView.frame.origin.y = 225
         self.cancelButton.isHidden = true
         self.searchTextField.frame.size.width += 100
         self.searchTextField.text = ""
@@ -200,7 +199,6 @@ extension MainView: UITextFieldDelegate {
         if textField == searchTextField {
             guard let requestText = textField.text else { return false }
             delegate?.sendRequestToMainPresenter(request: requestText)
-            print(requestText)
             requestLabel.text = requestText
             requestLabel.isHidden = false
             searchTextField.resignFirstResponder()
@@ -209,3 +207,14 @@ extension MainView: UITextFieldDelegate {
         return false
     }
 }
+
+
+
+//func createImagesCollectionView() {
+//    let layout = UICollectionViewFlowLayout()
+//    imagesCollectionView = UICollectionView(frame: CGRect(x: 0, y: 225, width: self.bounds.size.width, height: self.bounds.size.height - 200), collectionViewLayout: layout)
+//    imagesCollectionView?.backgroundColor = .purple
+//    guard let imagesCollectionView = imagesCollectionView else { return }
+//    imagesCollectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
+//    self.addSubview(imagesCollectionView)
+//}

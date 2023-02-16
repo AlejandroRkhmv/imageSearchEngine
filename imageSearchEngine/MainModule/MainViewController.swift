@@ -9,11 +9,13 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    let layout = UICollectionViewFlowLayout()
     var mainView: MainView?
     var mainPresenter: IMainPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

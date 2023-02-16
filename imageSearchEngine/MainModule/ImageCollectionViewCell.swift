@@ -18,11 +18,17 @@ class ImageCollectionViewCell: UICollectionViewCell {
     }()
     
     
-    var dataForImage: Data? {
+    var urlForImage: String? {
         
         didSet {
-            if let data = dataForImage {
-                imageView.image = UIImage(data: data)
+            if let urlForImage = urlForImage {
+                DispatchQueue.global().async {
+                    guard let url = URL(string: urlForImage) else { return }
+                    guard let data = try? Data(contentsOf: url) else { return }
+                    DispatchQueue.main.async {
+                        self.imageView.image = UIImage(data: data)
+                    }
+                }
             }
         }
     }

@@ -8,9 +8,10 @@
 import Foundation
 
 protocol IMainInteractor: AnyObject {
+    
     var networkService: INetworkService { get set }
     
     init(networkService: INetworkService)
     
-    func createImageDatasArray(request: String, completionHandler: @escaping (([ImageData]) -> Void), completionHandlerForData: @escaping (([Data]) -> Void))
+    func createImageDatasArray(request: String, completionHandler: @escaping (([ImageData]) -> Void))
 }

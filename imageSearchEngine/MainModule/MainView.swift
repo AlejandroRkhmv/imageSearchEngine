@@ -16,8 +16,7 @@ class MainView: UIView {
     let searchTextField = UITextField()
     let cancelButton = UIButton()
     let requestLabel = UILabel()
-    let layout = UICollectionViewFlowLayout()
-    var imagesCollectionView: UICollectionView?
+    var imagesCollectionView: UICollectionViewController?
     
     var delegate: MainViewControllerDelegate?
     

@@ -19,6 +19,8 @@ class NetworkService: INetworkService {
                 print(error.localizedDescription, "1")
             }
             if let data = data {
+//                guard let stringData = String(data: data, encoding: .utf8) else { return }
+//                print(stringData)
                 guard let imagesResult = self.jsonParser.parseJSON(with: data) else { return }
                 guard let imagesData = self.imageDataCreator.createImageDataObjects(from: imagesResult.imagesResults) else { return }
                 completionHandler(imagesData)
@@ -27,16 +29,30 @@ class NetworkService: INetworkService {
         task.resume()
     }
     
-    func loadDataImageForSingleData(from url: URL, completionHandler: @escaping ((Data) -> Void)) {
+    func loadDataImageForSingleData(from url: URL, completionData: @escaping ((Data) -> Void)) {
+        
+        
+        
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             if let error = error {
-                print(error.localizedDescription, "2")
+                print(String(describing: error))
             }
             if let data = data {
-                completionHandler(data)
+                completionData(data)
             }
         }
         task.resume()
+//        do {
+//            let data = try Data(contentsOf: url)
+//            return data
+//        } catch let error as NSError {
+//            print(String(describing: error))
+//        }
+//
+//        return nil
+        
+//        guard let data = try? Data(contentsOf: url) else { return nil }
+//        return data
     }
 }

@@ -11,8 +11,8 @@ protocol IMainPresenter: AnyObject {
     
     var mainViewController: IMainViewController? { get set }
     var mainInteractor: IMainInteractor { get set }
+    
     var imagesData: [ImageData] { get set }
-    var datasForImages: [Data] { get set }
     
     init(mainViewController: IMainViewController?, mainInteractor: IMainInteractor)
     

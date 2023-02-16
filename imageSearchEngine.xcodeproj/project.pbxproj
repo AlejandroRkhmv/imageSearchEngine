@@ -38,6 +38,7 @@
 		210B8EB7299D3E9B00499ABA /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EB6299D3E9B00499ABA /* JsonParser.swift */; };
 		210B8EB9299D427C00499ABA /* ImageDataCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EB8299D427C00499ABA /* ImageDataCreator.swift */; };
 		210B8EBB299D6A2B00499ABA /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EBA299D6A2B00499ABA /* ImageCollectionViewCell.swift */; };
+		210BF940299E9AE8007D9072 /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210BF93F299E9AE8007D9072 /* ImageInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		210B8EB6299D3E9B00499ABA /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 		210B8EB8299D427C00499ABA /* ImageDataCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataCreator.swift; sourceTree = "<group>"; };
 		210B8EBA299D6A2B00499ABA /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		210BF93F299E9AE8007D9072 /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 			children = (
 				210B8E8A299CBF8B00499ABA /* GoogleImageAPI.swift */,
 				210B8EB2299D3AA000499ABA /* ImageData.swift */,
+				210BF93F299E9AE8007D9072 /* ImageInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				210B8EA0299CC1BB00499ABA /* WebView.swift in Sources */,
 				210B8E94299CC08000499ABA /* ImagePresentViewController.swift in Sources */,
 				210B8E8B299CBF8B00499ABA /* GoogleImageAPI.swift in Sources */,
+				210BF940299E9AE8007D9072 /* ImageInfo.swift in Sources */,
 				210B8E83299CBF0900499ABA /* MainInteractor.swift in Sources */,
 				210B8EAC299CC9F400499ABA /* IMainViewController.swift in Sources */,
 				210B8EA4299CC25300499ABA /* NetworkService.swift in Sources */,
