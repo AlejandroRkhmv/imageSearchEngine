@@ -10,7 +10,14 @@ import UIKit
 class MainViewController: UIViewController {
 
     let layout = UICollectionViewFlowLayout()
-    var mainView: MainView?
+    let searchLabelView = UIView()
+    let searchLabel = UILabel()
+    let requestLabelView = UIView()
+    let searchTextFieldView = UIView()
+    let searchTextField = UITextField()
+    let cancelButton = UIButton()
+    let requestLabel = UILabel()
+    var imagesCollectionView: UICollectionView?
     var mainPresenter: IMainPresenter?
     
     override func viewDidLoad() {
@@ -20,7 +27,11 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        createMainView()
+        createsearchLabelView()
+        createSearchTextFieldView()
+        createRequestLabelView()
+        createImagesCollectionView()
+        cancelButtonTarget()
     }
 }
 

@@ -30,9 +30,6 @@ class NetworkService: INetworkService {
     }
     
     func loadDataImageForSingleData(from url: URL, completionData: @escaping ((Data) -> Void)) {
-        
-        
-        
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             if let error = error {
@@ -43,16 +40,5 @@ class NetworkService: INetworkService {
             }
         }
         task.resume()
-//        do {
-//            let data = try Data(contentsOf: url)
-//            return data
-//        } catch let error as NSError {
-//            print(String(describing: error))
-//        }
-//
-//        return nil
-        
-//        guard let data = try? Data(contentsOf: url) else { return nil }
-//        return data
     }
 }

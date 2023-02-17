@@ -14,7 +14,6 @@ class MainInteractor: IMainInteractor {
     
     
     private let queueConcurent = DispatchQueue(label: "concurentQueue", attributes: .concurrent)
-    private let groupp = DispatchGroup()
     
     required init(networkService: INetworkService) {
         self.networkService = networkService
@@ -29,42 +28,34 @@ class MainInteractor: IMainInteractor {
         }
     }
     
-//    private func createDatasForImages(imagesData: [ImageData], completionHandler: @escaping (([ImageInfo]) -> Void)) {
-//        var datas = [ImageInfo]()
-//
-//        let group = DispatchGroup()
-//
-//
-//        group.enter()
-//            for element in imagesData {
-//                guard let url = URL(string: element.imageUrl) else {
-//                    print("error")
-//                    return }
-//                self.networkService.loadDataImageForSingleData(from: url) { data in
-//                    let imageInfo = ImageInfo(imageData: data, webLink: element.webLink)
-//                    datas.append(imageInfo)
-//                }
-//            }
-//        do {
-//            group.leave()
-//        }
-//
-//
-//
-//
-//        group.notify(queue: .main) {
-//            print(datas)
-//            print(datas.count)
-//        }
-//
-//
-//
-//
-//
-//
-//
-//
-//        //completionHandler(datas)
-//    }
+    func createDatasForImages(imagesData: [ImageData], completionHandler: @escaping (([ImageInfo]) -> Void)) {
+        var datas = [ImageInfo]()
+        
+        let operationQueue = OperationQueue()
+        let queue = DispatchQueue(label: "append datas", attributes: .concurrent)
+        
+        let operationOne = BlockOperation {
+            for element in imagesData {
+                guard element.imageUrl.hasPrefix("https://") else { continue }
+                guard let url = URL(string: element.imageUrl) else { return }
+                self.networkService.loadDataImageForSingleData(from: url) { data in
+                    queue.async {
+                        let imageInfo = ImageInfo(imageData: data, webLink: element.webLink)
+                        datas.append(imageInfo)
+                    }
+                }
+            }
+            print(Thread.current)
+        }
+    
+        let operationThree = BlockOperation {
+            sleep(10)
+            print("2", Thread.current)
+            completionHandler(datas)
+        }
+            
+        operationQueue.addOperations([operationOne], waitUntilFinished: true)
+        operationQueue.addOperation(operationThree)
+    }
 }
 

@@ -8,41 +8,14 @@
 import Foundation
 import UIKit
 
-extension MainViewController {
-    
-    // MARK: - createMainView
-    func createMainView() {
-        makeMainView()
-        setConstraintsForMainView()
-    }
-    
-    private func makeMainView() {
-        mainView = MainView()
-        mainView?.delegate = self
-        mainView?.imagesCollectionView?.collectionView.delegate = self
-        mainView?.imagesCollectionView?.collectionView.dataSource = self
-        guard let mainView = mainView else { return }
-        mainView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(mainView)
-    }
-    
-    private func setConstraintsForMainView() {
-        let topbarHeight: CGFloat = (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 100.0) + (self.navigationController?.navigationBar.frame.height ?? 100.0)
-        
-        mainView?.widthAnchor.constraint(equalToConstant: self.view.bounds.size.width).isActive = true
-        mainView?.heightAnchor.constraint(equalToConstant: (self.view.bounds.size.height - topbarHeight)).isActive = true
-        mainView?.topAnchor.constraint(equalTo: self.view.topAnchor, constant: topbarHeight).isActive = true
-        mainView?.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
-    }
-}
-
 // MARK: - IMainViewController
 extension MainViewController: IMainViewController {
     func reloadData() {
-        mainView?.imagesCollectionView?.collectionView.reloadData()
+        imagesCollectionView?.reloadData()
     }
 }
 
+// MARK: - UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -50,11 +23,11 @@ extension MainViewController: UICollectionViewDelegate {
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let countOfImages = mainPresenter?.imagesData.count else { return 0 }
-        print(countOfImages)
         return countOfImages
     }
     
@@ -65,33 +38,29 @@ extension MainViewController: UICollectionViewDataSource {
             cell.urlForImage = urlForImage
             return cell
         }
-        
-        
         return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        mainPresenter?.userTappedOnImage(key: indexPath.row)
     }
 }
 
-extension MainView: UICollectionViewDelegateFlowLayout {
+// MARK: - UICollectionViewDelegateFlowLayout
+extension MainViewController: UICollectionViewDelegateFlowLayout {
         
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             
-            return CGSize(width: ((collectionView.bounds.size.width - 10) / 2), height: (collectionView.bounds.size.height / 2))
+            return CGSize(width: ((collectionView.bounds.size.width - 10) / 3), height: ((collectionView.bounds.size.height) / 8))
         }
         
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
             
-            return 10
+            return 5
         }
-        
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-            
-            return 10
-        }
-    
 }
 
 // MARK: - MainViewControllerDelegate
-
 extension MainViewController: MainViewControllerDelegate {
     func sendRequestToMainPresenter(request: String) {
         mainPresenter?.userEnterRequestAndPressSearch(request: request)

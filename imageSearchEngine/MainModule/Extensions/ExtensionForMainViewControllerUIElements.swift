@@ -1,5 +1,5 @@
 //
-//  ExtensionForMainView.swift
+//  ExtensionForMainViewControllerUIElements.swift
 //  imageSearchEngine
 //
 //  Created by Александр Рахимов on 15.02.2023.
@@ -7,31 +7,32 @@
 
 import UIKit
 
+// MARK: - MainViewControllerDelegate
 protocol MainViewControllerDelegate {
     func sendRequestToMainPresenter(request: String)
 }
 
 
 // MARK: - create UI elements
-extension MainView {
+extension MainViewController {
     
     func createsearchLabelView() {
-        searchLabelView.frame = CGRect(x: 0, y: 0, width: self.bounds.size.width, height: 75)
-        self.addSubview(searchLabelView)
+        searchLabelView.frame = CGRect(x: 0, y: 75, width: view.bounds.size.width, height: 75)
+        view.addSubview(searchLabelView)
         createSearchLabel()
     }
     
     func createSearchTextFieldView() {
-        searchTextFieldView.frame = CGRect(x: 0, y: 75, width: self.bounds.size.width, height: 75)
-        self.addSubview(searchTextFieldView)
+        searchTextFieldView.frame = CGRect(x: 0, y: 150, width: view.bounds.size.width, height: 75)
+        view.addSubview(searchTextFieldView)
         createSearchTextField()
         addAnimationForSearchTextField()
         createCancelButton()
     }
     
     func createRequestLabelView() {
-        requestLabelView.frame = CGRect(x: 0, y: 150, width: self.bounds.size.width, height: 50)
-        self.addSubview(requestLabelView)
+        requestLabelView.frame = CGRect(x: 0, y: 225, width: view.bounds.size.width, height: 50)
+        view.addSubview(requestLabelView)
         createRequestLabel()
     }
     
@@ -58,16 +59,14 @@ extension MainView {
     // MARK: - createImagesCollectionView
     func createImagesCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        imagesCollectionView = UICollectionViewController(collectionViewLayout: layout)
-        imagesCollectionView?.collectionView.frame = CGRect(x: 0, y: 225, width: self.bounds.size.width, height: self.bounds.size.height - 200)
-        imagesCollectionView?.collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
-        imagesCollectionView?.collectionView.backgroundColor = .purple
-        guard let collectionView = imagesCollectionView?.collectionView else { return }
-        self.addSubview(collectionView)
+        imagesCollectionView = UICollectionView(frame: CGRect(x: 20, y: 300, width: view.bounds.size.width - 40, height: view.bounds.size.height - 200), collectionViewLayout: layout)
+        imagesCollectionView?.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
+        guard let collectionView = imagesCollectionView else { return }
+        imagesCollectionView?.delegate = self
+        imagesCollectionView?.dataSource = self
+        view.addSubview(collectionView)
     }
     
-    
-
     // MARK: - makeSearchLabel
     private func makeSearchLabel() {
         searchLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -128,10 +127,10 @@ extension MainView {
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { [self] (nc) in
             self.searchTextField.becomeFirstResponder()
             self.searchLabelView.isHidden = true
-            self.searchLabelView.frame.origin.y = -75
-            self.searchTextFieldView.frame.origin.y = 0
-            self.requestLabelView.frame.origin.y = 75
-            self.imagesCollectionView?.collectionView.frame.origin.y = 150
+            self.searchLabelView.frame.origin.y = 0
+            self.searchTextFieldView.frame.origin.y = 75
+            self.requestLabelView.frame.origin.y = 150
+            self.imagesCollectionView?.frame.origin.y = 225
             self.searchTextField.frame.size.width = searchTextFieldView.bounds.size.width - 240
             self.cancelButton.isHidden = false
         }
@@ -156,19 +155,20 @@ extension MainView {
         cancelButton.centerYAnchor.constraint(equalTo: searchTextFieldView.centerYAnchor, constant: 0).isActive = true
     }
 
+    // MARK: - add target for cancel button
     func cancelButtonTarget() {
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
     }
 
     // MARK: - cancelButtonTapped
     @objc
-    func cancelButtonTapped() {
+    private func cancelButtonTapped() {
         self.searchTextField.resignFirstResponder()
         self.searchLabelView.isHidden = false
-        self.searchLabelView.frame.origin.y = 0
-        self.searchTextFieldView.frame.origin.y = 75
-        self.requestLabelView.frame.origin.y = 150
-        self.imagesCollectionView?.collectionView.frame.origin.y = 225
+        self.searchLabelView.frame.origin.y = 75
+        self.searchTextFieldView.frame.origin.y = 150
+        self.requestLabelView.frame.origin.y = 225
+        self.imagesCollectionView?.frame.origin.y = 300
         self.cancelButton.isHidden = true
         self.searchTextField.frame.size.width += 100
         self.searchTextField.text = ""
@@ -193,12 +193,12 @@ extension MainView {
 }
 
 // MARK: - UITextFieldDelegate
-extension MainView: UITextFieldDelegate {
+extension MainViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == searchTextField {
             guard let requestText = textField.text else { return false }
-            delegate?.sendRequestToMainPresenter(request: requestText)
+            sendRequestToMainPresenter(request: requestText)
             requestLabel.text = requestText
             requestLabel.isHidden = false
             searchTextField.resignFirstResponder()
@@ -207,14 +207,3 @@ extension MainView: UITextFieldDelegate {
         return false
     }
 }
-
-
-
-//func createImagesCollectionView() {
-//    let layout = UICollectionViewFlowLayout()
-//    imagesCollectionView = UICollectionView(frame: CGRect(x: 0, y: 225, width: self.bounds.size.width, height: self.bounds.size.height - 200), collectionViewLayout: layout)
-//    imagesCollectionView?.backgroundColor = .purple
-//    guard let imagesCollectionView = imagesCollectionView else { return }
-//    imagesCollectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
-//    self.addSubview(imagesCollectionView)
-//}

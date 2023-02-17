@@ -5,4 +5,10 @@
 //  Created by Александр Рахимов on 15.02.2023.
 //
 
-import Foundation
+import UIKit
+
+protocol IBuilder {
+    func createMainViewController(router: IRouter) -> UIViewController
+    func createImagePresentViewController(router: IRouter, imagesData: [ImageData], indexTappedImage: Int) -> UIViewController
+    func createWebViewController(router: IRouter, webUrl: String) -> UIViewController
+}

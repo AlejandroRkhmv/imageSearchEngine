@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ImageInfo {
+struct ImageInfo: Equatable {
     
     let imageData: Data
     let webLink: String
