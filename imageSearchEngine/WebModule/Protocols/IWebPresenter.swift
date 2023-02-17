@@ -7,6 +7,13 @@
 
 import Foundation
 
-protocol IWebPresenter {
+protocol IWebPresenter: AnyObject {
     
+    var webViewController: IWebViewController? { get set }
+    var router: IRouter { get set }
+    var imageUrlString: String { get set }
+    
+    init(webViewController: IWebViewController, imageUrlString: String, router: IRouter)
+    
+    func webViewDidLoad()
 }

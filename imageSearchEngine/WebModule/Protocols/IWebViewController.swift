@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol IWebViewController {
+protocol IWebViewController: AnyObject {
     func showMe(urlString: String)
 }

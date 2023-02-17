@@ -127,7 +127,7 @@ extension ImagePresentViewController {
     
     @objc
     private func goToWebButtonTapped() {
-        print("web")
+        imagePresentPresenter?.userTappedGoToWebButton()
     }
     
     // MARK: - customBackButton

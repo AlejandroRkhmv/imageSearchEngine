@@ -197,7 +197,7 @@ extension MainViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == searchTextField {
-            guard let requestText = textField.text else { return false }
+            guard let requestText = textField.text?.trimmingCharacters(in: .whitespaces) else { return false }
             sendRequestToMainPresenter(request: requestText)
             requestLabel.text = requestText
             requestLabel.isHidden = false

@@ -196,8 +196,8 @@
 		210B8E9E299CC19400499ABA /* WebModule */ = {
 			isa = PBXGroup;
 			children = (
-				21D6E5FF299FE3CB004483C5 /* Protocols */,
 				21D6E602299FE410004483C5 /* Extensions */,
+				21D6E5FF299FE3CB004483C5 /* Protocols */,
 				210B8E9C299CC18A00499ABA /* WebViewController.swift */,
 				210B8EA1299CC1CD00499ABA /* WebPresenter.swift */,
 			);

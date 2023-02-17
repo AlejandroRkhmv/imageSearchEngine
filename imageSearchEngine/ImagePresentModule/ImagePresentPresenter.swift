@@ -56,6 +56,7 @@ class ImagePresentPresenter: IImagePresentPresenter {
     }
     
     func userTappedGoToWebButton() {
-        
+        let webUrl = imagesData[indexTappedImage].webLink
+        router.pushWebViewController(webUrl: webUrl)
     }
 }

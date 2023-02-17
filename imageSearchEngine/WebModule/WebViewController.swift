@@ -12,16 +12,20 @@ class WebViewController: UIViewController {
 
     var imageWebView = WKWebView()
     let toolBar = UIToolbar()
-    var backButton = UIBarButtonItem()
-    
+    var backButton = UIButton()
+    var webPresenter: IWebPresenter?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-     
-        
+        webPresenter?.webViewDidLoad()
     }
     
-   
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        createWebView()
+        createToolBar()
+        createBackButton()
+        customBackButton()
+    }
 }

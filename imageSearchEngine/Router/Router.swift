@@ -33,7 +33,8 @@ class MainRouter: IRouter {
     
     func pushWebViewController(webUrl: String) {
         if let navigationController = navigationController {
-            
+            guard let webVC = builder?.createWebViewController(router: self, webUrl: webUrl) else { return }
+            navigationController.pushViewController(webVC, animated: false)
         }
     }
     

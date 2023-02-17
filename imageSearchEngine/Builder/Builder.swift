@@ -27,6 +27,9 @@ class Builder: IBuilder {
     }
     
     func createWebViewController(router: IRouter, webUrl: String) -> UIViewController {
-        
+        let webViewController = WebViewController()
+        let webPresenter = WebPresenter(webViewController: webViewController, imageUrlString: webUrl, router: router)
+        webViewController.webPresenter = webPresenter
+        return webViewController
     }
 }
