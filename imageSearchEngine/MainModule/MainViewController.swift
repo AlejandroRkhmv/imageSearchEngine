@@ -48,7 +48,6 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - function before change device orientation
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         switch UIDevice.current.orientation {

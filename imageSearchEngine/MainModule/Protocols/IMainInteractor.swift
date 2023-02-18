@@ -14,7 +14,9 @@ protocol IMainInteractor: AnyObject {
     init(networkService: INetworkService)
     
     func createImageDatasArray(request: String, completionHandler: @escaping (([ImageData]) -> Void))
-    func clearCatche()
+    func clearCache()
     func clearStorageImagesData()
     func loadImageForCell(from urlString: String, completionImage: @escaping ((UIImage) -> Void))
+    func getCountOfImages(completionForCount: @escaping ((Int) -> Void))
+    func getImageUrl(for i: Int, completionForImageUrl: @escaping ((String) -> Void))
 }

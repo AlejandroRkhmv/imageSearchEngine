@@ -15,7 +15,7 @@ class JsonParser {
             let imagesResults = try decoder.decode(GoogleImageAPI.self, from: data)
             return imagesResults
         } catch let error as NSError {
-            print(String(describing: error), "3")
+            print(String(describing: error))
         }
         return nil
     }

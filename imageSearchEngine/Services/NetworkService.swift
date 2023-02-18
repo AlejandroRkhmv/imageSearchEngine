@@ -16,7 +16,7 @@ class NetworkService: INetworkService {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             if let error = error {
-                print(error.localizedDescription, "1")
+                print(error.localizedDescription)
             }
             if let data = data {
 //                guard let stringData = String(data: data, encoding: .utf8) else { return }
@@ -37,7 +37,8 @@ class NetworkService: INetworkService {
             guard let data = try? Data(contentsOf: url) else {
                 let noDataImage = loadNoData()
                 completionImage(noDataImage)
-                return }
+                return
+            }
             guard let image = UIImage(data: data) else { return }
             Cache.cache.setObject(image, forKey: urlString as AnyObject)
             completionImage(image)

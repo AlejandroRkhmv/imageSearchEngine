@@ -10,7 +10,6 @@ import UIKit
 class ImagePresentInteractor: IImagePresentInteractor {
     
     var networkService: INetworkService
-    var imagesData = [ImageData]()
     
     required init(networkService: INetworkService) {
         self.networkService = networkService

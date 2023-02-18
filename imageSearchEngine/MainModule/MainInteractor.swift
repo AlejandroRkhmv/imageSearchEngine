@@ -25,7 +25,7 @@ class MainInteractor: IMainInteractor {
         }
     }
     
-    func clearCatche() {
+    func clearCache() {
         Cache.cache.removeAllObjects()
     }
     
@@ -36,6 +36,15 @@ class MainInteractor: IMainInteractor {
     func loadImageForCell(from urlString: String, completionImage: @escaping ((UIImage) -> Void)) {
         networkService.loadImage(from: urlString, completionImage: completionImage)
     }
+    
+    func getCountOfImages(completionForCount: @escaping ((Int) -> Void)) {
+        completionForCount(Storage.imagesData.count)
+    }
+    
+    func getImageUrl(for i: Int, completionForImageUrl: @escaping ((String) -> Void)) {
+        completionForImageUrl(Storage.imagesData[i].imageUrl)
+    }
+    
 }
 
 

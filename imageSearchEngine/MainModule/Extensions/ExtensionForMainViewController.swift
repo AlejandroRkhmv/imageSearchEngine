@@ -37,7 +37,10 @@ extension MainViewController: UICollectionViewDelegate {
 extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let countOfImages = Storage.imagesData.count
+        var countOfImages = 0
+        mainPresenter?.getCountOfImages(completionForCount: { count in
+            countOfImages = count
+        })
         return countOfImages
     }
     
@@ -45,7 +48,10 @@ extension MainViewController: UICollectionViewDataSource {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as? ImageCollectionViewCell {
             cell.delegate = self
-            let urlForImage = Storage.imagesData[indexPath.row].imageUrl
+            var urlForImage = ""
+            mainPresenter?.getImageUrl(for: indexPath.row, completionForImageUrl: { url in
+                urlForImage = url
+            })
             cell.urlForImage = urlForImage
             return cell
         }
@@ -55,7 +61,6 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         mainPresenter?.userTappedOnImage(key: indexPath.row)
         moveElementsToStartPosition()
-        
     }
 }
 

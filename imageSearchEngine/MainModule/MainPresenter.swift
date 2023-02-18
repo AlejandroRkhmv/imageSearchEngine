@@ -21,7 +21,7 @@ class MainPresenter: IMainPresenter {
     
     
     func userEnterRequestAndPressSearch(request: String) {
-        mainInteractor.clearCatche()
+        mainInteractor.clearCache()
         mainInteractor.clearStorageImagesData()
         DispatchQueue.main.async {
             self.mainViewController?.reloadData()
@@ -43,5 +43,13 @@ class MainPresenter: IMainPresenter {
     
     func loadImageForCell(from urlString: String, completionImage: @escaping ((UIImage) -> Void)) {
         mainInteractor.loadImageForCell(from: urlString, completionImage: completionImage)
+    }
+    
+    func getCountOfImages(completionForCount: @escaping ((Int) -> Void)) {
+        mainInteractor.getCountOfImages(completionForCount: completionForCount)
+    }
+    
+    func getImageUrl(for i: Int, completionForImageUrl: @escaping ((String) -> Void)) {
+        mainInteractor.getImageUrl(for: i, completionForImageUrl: completionForImageUrl)
     }
 }
