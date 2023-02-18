@@ -5,7 +5,7 @@
 //  Created by Александр Рахимов on 15.02.2023.
 //
 
-import Foundation
+import UIKit
 
 class NetworkService: INetworkService {
     
@@ -29,16 +29,14 @@ class NetworkService: INetworkService {
         task.resume()
     }
     
-    func loadDataImageForSingleData(from url: URL, completionData: @escaping ((Data) -> Void)) {
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print(String(describing: error))
-            }
-            if let data = data {
-                completionData(data)
-            }
+    func loadImage(from urlString: String, completionImage: @escaping (UIImage) -> Void) {
+        if let image = Catche.cache.object(forKey: urlString as AnyObject) {
+            completionImage(image)
+        } else {
+            guard let url = URL(string: urlString) else { return }
+            guard let data = try? Data(contentsOf: url) else { return }
+            guard let image = UIImage(data: data) else { return }
+            completionImage(image)
         }
-        task.resume()
     }
 }

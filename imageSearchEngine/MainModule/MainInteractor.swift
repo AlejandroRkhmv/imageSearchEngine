@@ -27,35 +27,6 @@ class MainInteractor: IMainInteractor {
             completionHandler(data)
         }
     }
-    
-    func createDatasForImages(imagesData: [ImageData], completionHandler: @escaping (([ImageInfo]) -> Void)) {
-        var datas = [ImageInfo]()
-        
-        let operationQueue = OperationQueue()
-        let queue = DispatchQueue(label: "append datas", attributes: .concurrent)
-        
-        let operationOne = BlockOperation {
-            for element in imagesData {
-                guard element.imageUrl.hasPrefix("https://") else { continue }
-                guard let url = URL(string: element.imageUrl) else { return }
-                self.networkService.loadDataImageForSingleData(from: url) { data in
-                    queue.async {
-                        let imageInfo = ImageInfo(imageData: data, webLink: element.webLink)
-                        datas.append(imageInfo)
-                    }
-                }
-            }
-            print(Thread.current)
-        }
-    
-        let operationThree = BlockOperation {
-            sleep(10)
-            print("2", Thread.current)
-            completionHandler(datas)
-        }
-            
-        operationQueue.addOperations([operationOne], waitUntilFinished: true)
-        operationQueue.addOperation(operationThree)
-    }
 }
+
 

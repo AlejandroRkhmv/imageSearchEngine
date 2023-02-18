@@ -9,6 +9,8 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    var leadingConstraint: NSLayoutConstraint!
+    var trailingConstraint: NSLayoutConstraint!
     let layout = UICollectionViewFlowLayout()
     let searchLabelView = UIView()
     let searchLabel = UILabel()
@@ -18,6 +20,7 @@ class MainViewController: UIViewController {
     let cancelButton = UIButton()
     let requestLabel = UILabel()
     var imagesCollectionView: UICollectionView?
+    var activityIndicator = UIActivityIndicatorView(style: .large)
     var mainPresenter: IMainPresenter?
     
     override func viewDidLoad() {
@@ -32,6 +35,7 @@ class MainViewController: UIViewController {
         createRequestLabelView()
         createImagesCollectionView()
         cancelButtonTarget()
+        makeActivityIndicator()
     }
 }
 

@@ -27,14 +27,10 @@ class MainPresenter: IMainPresenter {
         mainInteractor.createImageDatasArray(request: request) { [weak self] imagesData in
             guard let self = self else { return }
             self.imagesData = imagesData
-            DispatchQueue.global().async {
-                self.mainInteractor.createDatasForImages(imagesData: imagesData) { imagesInfo in
-                    self.imagesInfo = imagesInfo
-                    print(imagesInfo.count)
-            }
+            
             DispatchQueue.main.async {
                 self.mainViewController?.reloadData()
-                }
+                self.mainViewController?.activityIndicator.stopAnimating()
             }
         }
     }

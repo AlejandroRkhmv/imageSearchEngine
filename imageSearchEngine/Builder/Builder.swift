@@ -20,7 +20,8 @@ class Builder: IBuilder {
     
     func createImagePresentViewController(router: IRouter, imagesData: [ImageData], indexTappedImage: Int) -> UIViewController {
         let imagePresentViewController = ImagePresentViewController()
-        let imagePresentInteractor = ImagePresentInteractor()
+        let networkService = NetworkService()
+        let imagePresentInteractor = ImagePresentInteractor(networkService: networkService)
         let imagePresentPresenter = ImagePresentPresenter(imagePresentViewController: imagePresentViewController, imagePresentInteractor: imagePresentInteractor, router: router, imagesData: imagesData, indexTappedImage: indexTappedImage)
         imagePresentViewController.imagePresentPresenter = imagePresentPresenter
         return imagePresentViewController

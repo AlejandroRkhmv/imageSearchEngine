@@ -14,5 +14,4 @@ protocol IMainInteractor: AnyObject {
     init(networkService: INetworkService)
     
     func createImageDatasArray(request: String, completionHandler: @escaping (([ImageData]) -> Void))
-    func createDatasForImages(imagesData: [ImageData], completionHandler: @escaping (([ImageInfo]) -> Void))
 }

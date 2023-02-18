@@ -43,6 +43,7 @@ extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         mainPresenter?.userTappedOnImage(key: indexPath.row)
+        moveElementsToStartPosition()
     }
 }
 

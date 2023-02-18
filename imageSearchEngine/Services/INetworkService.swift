@@ -5,9 +5,9 @@
 //  Created by Александр Рахимов on 15.02.2023.
 //
 
-import Foundation
+import UIKit
 
 protocol INetworkService {
     func loadImagesData(from url: URL, completionHandler: @escaping (([ImageData]) -> Void))
-    func loadDataImageForSingleData(from url: URL, completionData: @escaping ((Data) -> Void))
+    func loadImage(from urlString: String, completionImage: @escaping (UIImage) -> Void)
 }

@@ -99,20 +99,24 @@ extension MainViewController {
     }
 
     private func setConstraintsForSearchTextField() {
-        searchTextField.widthAnchor.constraint(equalToConstant: searchTextFieldView.bounds.size.width - 40).isActive = true
-        searchTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        searchTextField.leadingAnchor.constraint(equalTo: searchTextFieldView.leadingAnchor, constant: 20).isActive = true
-        searchTextField.centerYAnchor.constraint(equalTo: searchTextFieldView.centerYAnchor, constant: 0).isActive = true
+        
+        leadingConstraint = searchTextField.leadingAnchor.constraint(equalTo: searchTextFieldView.leadingAnchor, constant: 20)
+        trailingConstraint = searchTextFieldView.trailingAnchor.constraint(equalTo: searchTextField.trailingAnchor, constant: 20)
+
+        NSLayoutConstraint.activate([
+            searchTextField.heightAnchor.constraint(equalToConstant: 44),
+            searchTextField.centerYAnchor.constraint(equalTo: searchTextFieldView.centerYAnchor, constant: 0),
+            leadingConstraint,
+            trailingConstraint
+        ])
+        
+        searchTextField.layoutIfNeeded()
+        
     }
 
     internal func addMagnifyingGlassImage(on textField: UITextField) {
-        let imageView = UIImageView()
-        imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 20)
         let magnifyingGlassImage = UIImage(systemName: "magnifyingglass", withConfiguration: UIImage.SymbolConfiguration(weight: .medium))?.withTintColor(.gray, renderingMode: .alwaysOriginal)
-        imageView.image = magnifyingGlassImage
-        imageView.contentMode = .scaleAspectFit
-        textField.leftViewMode = .always
-        textField.leftView = imageView
+        textField.setLeftIcon(magnifyingGlassImage!)
     }
 
     internal func addClearMode(on textField: UITextField) {
@@ -124,14 +128,15 @@ extension MainViewController {
 
     // MARK: - tap on searchTextField
     internal func addAnimationForSearchTextField() {
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { [self] (nc) in
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { [weak self] (nc) in
+            guard let self = self else { return }
             self.searchTextField.becomeFirstResponder()
             self.searchLabelView.isHidden = true
             self.searchLabelView.frame.origin.y = 0
             self.searchTextFieldView.frame.origin.y = 75
             self.requestLabelView.frame.origin.y = 150
             self.imagesCollectionView?.frame.origin.y = 225
-            self.searchTextField.frame.size.width = searchTextFieldView.bounds.size.width - 240
+            self.trailingConstraint.constant = 120
             self.cancelButton.isHidden = false
         }
     }
@@ -163,6 +168,10 @@ extension MainViewController {
     // MARK: - cancelButtonTapped
     @objc
     private func cancelButtonTapped() {
+        moveElementsToStartPosition()
+    }
+    
+    func moveElementsToStartPosition() {
         self.searchTextField.resignFirstResponder()
         self.searchLabelView.isHidden = false
         self.searchLabelView.frame.origin.y = 75
@@ -170,7 +179,7 @@ extension MainViewController {
         self.requestLabelView.frame.origin.y = 225
         self.imagesCollectionView?.frame.origin.y = 300
         self.cancelButton.isHidden = true
-        self.searchTextField.frame.size.width += 100
+        self.trailingConstraint.constant -= CGFloat(100)
         self.searchTextField.text = ""
     }
 
@@ -180,7 +189,7 @@ extension MainViewController {
         requestLabel.font = UIFont(name: "Courier", size: 30)
         requestLabel.textColor = .black
         requestLabel.textAlignment = .center
-        requestLabel.isHidden = true
+        requestLabel.text = ""
         requestLabelView.addSubview(requestLabel)
     }
 
@@ -189,6 +198,25 @@ extension MainViewController {
         requestLabel.heightAnchor.constraint(equalToConstant: 44).isActive = true
         requestLabel.centerXAnchor.constraint(equalTo: requestLabelView.centerXAnchor, constant: 0).isActive = true
         requestLabel.centerYAnchor.constraint(equalTo: requestLabelView.centerYAnchor, constant: 0).isActive = true
+    }
+    
+    // MARK: - makeActivityIndicator
+    func makeActivityIndicator() {
+        createActivityIndicator()
+        setConstraintsForActivityIndicator()
+    }
+    
+    private func createActivityIndicator() {
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.isHidden = true
+        imagesCollectionView?.addSubview(activityIndicator)
+    }
+    
+    private func setConstraintsForActivityIndicator() {
+        activityIndicator.centerXAnchor.constraint(equalTo: imagesCollectionView!.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: imagesCollectionView!.centerYAnchor).isActive = true
     }
 }
 
@@ -200,10 +228,27 @@ extension MainViewController: UITextFieldDelegate {
             guard let requestText = textField.text?.trimmingCharacters(in: .whitespaces) else { return false }
             sendRequestToMainPresenter(request: requestText)
             requestLabel.text = requestText
-            requestLabel.isHidden = false
             searchTextField.resignFirstResponder()
+            activityIndicator.isHidden = false
             return true
         }
         return false
     }
+}
+
+extension UITextField {
+
+ func setLeftIcon(_ icon: UIImage) {
+
+    let padding = 8
+    let size = 20
+
+    let outerView = UIView(frame: CGRect(x: 0, y: 0, width: size+padding, height: size) )
+    let iconView  = UIImageView(frame: CGRect(x: padding, y: 0, width: size, height: size))
+    iconView.image = icon
+    outerView.addSubview(iconView)
+
+    leftView = outerView
+    leftViewMode = .always
+  }
 }

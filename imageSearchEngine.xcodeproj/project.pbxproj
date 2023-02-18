@@ -36,6 +36,7 @@
 		210B8EB9299D427C00499ABA /* ImageDataCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EB8299D427C00499ABA /* ImageDataCreator.swift */; };
 		210B8EBB299D6A2B00499ABA /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EBA299D6A2B00499ABA /* ImageCollectionViewCell.swift */; };
 		210BF940299E9AE8007D9072 /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210BF93F299E9AE8007D9072 /* ImageInfo.swift */; };
+		21267B8A29A0CF5600B9AD7D /* Catche.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21267B8929A0CF5600B9AD7D /* Catche.swift */; };
 		212AC5D9299F73B5009F58FC /* ExtensionForImagePresentViewControllerForUIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212AC5D8299F73B5009F58FC /* ExtensionForImagePresentViewControllerForUIElements.swift */; };
 		212AC5DC299FA30C009F58FC /* IImagePresentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212AC5DB299FA30C009F58FC /* IImagePresentViewController.swift */; };
 		212AC5DE299FA31A009F58FC /* IImagePresentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212AC5DD299FA31A009F58FC /* IImagePresentInteractor.swift */; };
@@ -77,6 +78,7 @@
 		210B8EB8299D427C00499ABA /* ImageDataCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataCreator.swift; sourceTree = "<group>"; };
 		210B8EBA299D6A2B00499ABA /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		210BF93F299E9AE8007D9072 /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
+		21267B8929A0CF5600B9AD7D /* Catche.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catche.swift; sourceTree = "<group>"; };
 		212AC5D8299F73B5009F58FC /* ExtensionForImagePresentViewControllerForUIElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionForImagePresentViewControllerForUIElements.swift; sourceTree = "<group>"; };
 		212AC5DB299FA30C009F58FC /* IImagePresentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IImagePresentViewController.swift; sourceTree = "<group>"; };
 		212AC5DD299FA31A009F58FC /* IImagePresentInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IImagePresentInteractor.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		210B8EA5299CC25B00499ABA /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				21267B8929A0CF5600B9AD7D /* Catche.swift */,
 				210B8EB4299D3C1F00499ABA /* INetworkService.swift */,
 				210B8EA3299CC25300499ABA /* NetworkService.swift */,
 				210B8EB6299D3E9B00499ABA /* JsonParser.swift */,
@@ -344,6 +347,7 @@
 				210B8EB9299D427C00499ABA /* ImageDataCreator.swift in Sources */,
 				210B8EAE299CCA0100499ABA /* IMainInteractor.swift in Sources */,
 				212AC5E0299FA329009F58FC /* IImagePresentPresenter.swift in Sources */,
+				21267B8A29A0CF5600B9AD7D /* Catche.swift in Sources */,
 				210B8E90299CBFB900499ABA /* IRouter.swift in Sources */,
 				210B8E81299CBEF900499ABA /* MainPresenter.swift in Sources */,
 				212AC5DE299FA31A009F58FC /* IImagePresentInteractor.swift in Sources */,

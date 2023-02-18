@@ -9,13 +9,21 @@ import UIKit
 
 class ImagePresentInteractor: IImagePresentInteractor {
     
+    var networkService: INetworkService
     var imagesData = [ImageData]()
     
+    required init(networkService: INetworkService) {
+        self.networkService = networkService
+    }
+    
     func getImageForUser(index: Int) -> UIImage {
+        var forReturnimage = UIImage()
         let urlString = imagesData[index].imageUrl
-        guard let url = URL(string: urlString) else { return UIImage() }
-        guard let data = try? Data(contentsOf: url) else { return UIImage() }
-        guard let image = UIImage(data: data) else { return UIImage() }
-        return image
+        networkService.loadImage(from: urlString) { image in
+            forReturnimage = image
+        }
+            return forReturnimage
     }
 }
+
+
