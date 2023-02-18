@@ -8,6 +8,8 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    
+    var startOrientation: Bool?
 
     var leadingConstraint: NSLayoutConstraint!
     var trailingConstraint: NSLayoutConstraint!
@@ -21,6 +23,7 @@ class MainViewController: UIViewController {
     let requestLabel = UILabel()
     var imagesCollectionView: UICollectionView?
     var activityIndicator = UIActivityIndicatorView(style: .large)
+    var mockView = UIView()
     var mainPresenter: IMainPresenter?
     
     override func viewDidLoad() {
@@ -36,6 +39,7 @@ class MainViewController: UIViewController {
         createImagesCollectionView()
         cancelButtonTarget()
         makeActivityIndicator()
+        mockView = createMock()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -43,13 +47,25 @@ class MainViewController: UIViewController {
         reloadElements()
     }
     
+    // MARK: - function before change device orientation
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        switch UIDevice.current.orientation {
+        case .portrait:
+            mockView.isHidden = true
+        case .landscapeLeft:
+            mockView.isHidden = false
+        case .landscapeRight:
+            mockView.isHidden = false
+        default: break
+        }
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         dismiss(animated: false)
         view.removeFromSuperview()
-    }
-    deinit {
-        print("MAIN")
     }
 }
 

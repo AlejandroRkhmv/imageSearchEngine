@@ -265,3 +265,50 @@ extension UITextField {
     leftViewMode = .always
   }
 }
+
+// MARK: - UIViewControllerExtension
+extension UIViewController {
+    
+    func createMock() -> UIView {
+        
+        let mockView = UIView()
+        let mockImageView = UIImageView()
+        let mockLabel = UILabel()
+        
+        // mock view
+        mockView.backgroundColor = .white
+        mockView.translatesAutoresizingMaskIntoConstraints = false
+        mockView.isHidden = true
+        view.addSubview(mockView)
+        
+        mockView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        mockView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        mockView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        mockView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        
+        // mock image view
+        mockImageView.image = UIImage(named: "rotate")
+        mockImageView.translatesAutoresizingMaskIntoConstraints = false
+        mockImageView.contentMode = .scaleAspectFit
+        mockView.addSubview(mockImageView)
+        
+        mockImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        mockImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        mockImageView.centerXAnchor.constraint(equalTo: mockView.centerXAnchor, constant: 0).isActive = true
+        mockView.centerYAnchor.constraint(equalTo: mockImageView.centerYAnchor, constant: 30).isActive = true
+        
+        // mock label
+        mockLabel.text = "turn the device, it's inconvenient"
+        mockLabel.translatesAutoresizingMaskIntoConstraints = false
+        mockLabel.textAlignment = .center
+        mockLabel.font = UIFont(name: "Courier", size: 20)
+        mockView.addSubview(mockLabel)
+        
+        mockLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: mockView.bounds.size.width - 40).isActive = true
+        mockLabel.topAnchor.constraint(equalTo: mockImageView.bottomAnchor, constant: 30).isActive = true
+        mockLabel.leadingAnchor.constraint(equalTo: mockView.leadingAnchor, constant: 20).isActive = true
+        mockView.trailingAnchor.constraint(equalTo: mockLabel.trailingAnchor, constant: 20).isActive = true
+        
+        return mockView
+    }
+}

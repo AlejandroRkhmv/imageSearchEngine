@@ -13,6 +13,7 @@ class ImagePresentViewController: UIViewController {
     let prevButton = UIButton()
     let nextButton = UIButton()
     let goToWebButton = UIButton()
+    var mockView = UIView()
     var imagePresentPresenter: IImagePresentPresenter?
     
     
@@ -32,14 +33,29 @@ class ImagePresentViewController: UIViewController {
         addTargetForPrevButton()
         addTargetForNextButton()
         addTargetForGoToWebButton()
+        mockView = createMock()
+    }
+    
+    // MARK: - function before change device orientation
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        switch UIDevice.current.orientation {
+        case .portrait:
+            mockView.isHidden = true
+            self.navigationItem.leftBarButtonItem?.isHidden = false
+        case .landscapeLeft:
+            mockView.isHidden = false
+            self.navigationItem.leftBarButtonItem?.isHidden = true
+        case .landscapeRight:
+            mockView.isHidden = false
+            self.navigationItem.leftBarButtonItem?.isHidden = true
+        default: break
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         reloadElements()
-    }
-    
-    deinit {
-        print("IMAGE")
     }
 }

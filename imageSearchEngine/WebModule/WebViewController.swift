@@ -33,8 +33,4 @@ class WebViewController: UIViewController {
         super.viewWillDisappear(animated)
         reloadElements()
     }
-    
-    deinit {
-        print("WEB")
-    }
 }
