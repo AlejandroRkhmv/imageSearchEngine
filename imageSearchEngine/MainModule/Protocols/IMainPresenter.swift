@@ -5,7 +5,7 @@
 //  Created by Александр Рахимов on 15.02.2023.
 //
 
-import Foundation
+import UIKit
 
 protocol IMainPresenter: AnyObject {
     
@@ -13,11 +13,9 @@ protocol IMainPresenter: AnyObject {
     var mainInteractor: IMainInteractor { get set }
     var router: IRouter { get set }
     
-    var imagesData: [ImageData] { get set }
-    var imagesInfo: [ImageInfo] { get set }
-    
     init(mainViewController: IMainViewController?, mainInteractor: IMainInteractor, router: IRouter)
     
     func userEnterRequestAndPressSearch(request: String)
     func userTappedOnImage(key: Int)
+    func loadImageForCell(from urlString: String, completionImage: @escaping ((UIImage) -> Void))
 }

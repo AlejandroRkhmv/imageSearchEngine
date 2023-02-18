@@ -18,11 +18,11 @@ class Builder: IBuilder {
         return mainViewController
     }
     
-    func createImagePresentViewController(router: IRouter, imagesData: [ImageData], indexTappedImage: Int) -> UIViewController {
+    func createImagePresentViewController(router: IRouter, indexTappedImage: Int) -> UIViewController {
         let imagePresentViewController = ImagePresentViewController()
         let networkService = NetworkService()
         let imagePresentInteractor = ImagePresentInteractor(networkService: networkService)
-        let imagePresentPresenter = ImagePresentPresenter(imagePresentViewController: imagePresentViewController, imagePresentInteractor: imagePresentInteractor, router: router, imagesData: imagesData, indexTappedImage: indexTappedImage)
+        let imagePresentPresenter = ImagePresentPresenter(imagePresentViewController: imagePresentViewController, imagePresentInteractor: imagePresentInteractor, router: router, indexTappedImage: indexTappedImage)
         imagePresentViewController.imagePresentPresenter = imagePresentPresenter
         return imagePresentViewController
     }

@@ -8,6 +8,16 @@
 import Foundation
 import UIKit
 
+// MARK: - MainViewControllerDelegate
+protocol MainViewControllerDelegate {
+    func sendRequestToMainPresenter(request: String)
+}
+
+// MARK: - MainViewControllerCellDelegate
+protocol MainViewControllerCellDelegate {
+    func loadImage(from urlString: String, completionImage: @escaping ((UIImage) -> Void))
+}
+
 // MARK: - IMainViewController
 extension MainViewController: IMainViewController {
     func reloadData() {
@@ -27,14 +37,15 @@ extension MainViewController: UICollectionViewDelegate {
 extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let countOfImages = mainPresenter?.imagesData.count else { return 0 }
+        let countOfImages = Storage.imagesData.count
         return countOfImages
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as? ImageCollectionViewCell {
-            guard let urlForImage = mainPresenter?.imagesData[indexPath.row].imageUrl else { return UICollectionViewCell() }
+            cell.delegate = self
+            let urlForImage = Storage.imagesData[indexPath.row].imageUrl
             cell.urlForImage = urlForImage
             return cell
         }
@@ -44,6 +55,7 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         mainPresenter?.userTappedOnImage(key: indexPath.row)
         moveElementsToStartPosition()
+        
     }
 }
 
@@ -68,4 +80,8 @@ extension MainViewController: MainViewControllerDelegate {
     }
 }
 
-
+extension MainViewController: MainViewControllerCellDelegate {
+    func loadImage(from urlString: String, completionImage: @escaping ((UIImage) -> Void)) {
+        mainPresenter?.loadImageForCell(from: urlString, completionImage: completionImage)
+    }
+}

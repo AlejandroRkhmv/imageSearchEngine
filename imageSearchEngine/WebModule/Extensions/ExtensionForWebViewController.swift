@@ -24,8 +24,10 @@ extension WebViewController {
     }
     
     private func setConstraintsForWebViewController() {
-        imageWebView.widthAnchor.constraint(equalToConstant: view.bounds.size.width).isActive = true
-        imageWebView.heightAnchor.constraint(equalToConstant: view.bounds.size.height).isActive = true
+        imageWebView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        imageWebView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        imageWebView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        imageWebView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         imageWebView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         imageWebView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
     }
@@ -43,7 +45,8 @@ extension WebViewController {
     }
     
     private func setConstraintsForToolBar() {
-        toolBar.widthAnchor.constraint(equalToConstant: view.bounds.size.width).isActive = true
+        toolBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        toolBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         toolBar.heightAnchor.constraint(equalToConstant: view.bounds.size.height * 0.121).isActive = true
         toolBar.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         view.bottomAnchor.constraint(equalTo: toolBar.bottomAnchor, constant: 0).isActive = true
@@ -58,7 +61,7 @@ extension WebViewController {
     
     private func makeBackButton() {
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.setTitle("Go to web", for: .normal)
+        backButton.setTitle("Go back", for: .normal)
         backButton.setTitleColor(.white, for: .normal)
         backButton.setTitleColor(.darkGray, for: .highlighted)
         backButton.backgroundColor = .black
@@ -86,6 +89,13 @@ extension WebViewController {
     // MARK: - customBackButton
     func customBackButton() {
         self.navigationItem.hidesBackButton = true
+    }
+    
+    // MARK: - reloadElements
+    func reloadElements() {
+        imageWebView.removeFromSuperview()
+        toolBar.removeFromSuperview()
+        backButton.removeFromSuperview()
     }
 }
 

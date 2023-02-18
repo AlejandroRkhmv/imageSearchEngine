@@ -35,8 +35,8 @@
 		210B8EB7299D3E9B00499ABA /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EB6299D3E9B00499ABA /* JsonParser.swift */; };
 		210B8EB9299D427C00499ABA /* ImageDataCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EB8299D427C00499ABA /* ImageDataCreator.swift */; };
 		210B8EBB299D6A2B00499ABA /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B8EBA299D6A2B00499ABA /* ImageCollectionViewCell.swift */; };
-		210BF940299E9AE8007D9072 /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210BF93F299E9AE8007D9072 /* ImageInfo.swift */; };
-		21267B8A29A0CF5600B9AD7D /* Catche.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21267B8929A0CF5600B9AD7D /* Catche.swift */; };
+		21267B8A29A0CF5600B9AD7D /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21267B8929A0CF5600B9AD7D /* Cache.swift */; };
+		21267B8C29A0E78A00B9AD7D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21267B8B29A0E78A00B9AD7D /* Storage.swift */; };
 		212AC5D9299F73B5009F58FC /* ExtensionForImagePresentViewControllerForUIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212AC5D8299F73B5009F58FC /* ExtensionForImagePresentViewControllerForUIElements.swift */; };
 		212AC5DC299FA30C009F58FC /* IImagePresentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212AC5DB299FA30C009F58FC /* IImagePresentViewController.swift */; };
 		212AC5DE299FA31A009F58FC /* IImagePresentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212AC5DD299FA31A009F58FC /* IImagePresentInteractor.swift */; };
@@ -77,8 +77,8 @@
 		210B8EB6299D3E9B00499ABA /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 		210B8EB8299D427C00499ABA /* ImageDataCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataCreator.swift; sourceTree = "<group>"; };
 		210B8EBA299D6A2B00499ABA /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		210BF93F299E9AE8007D9072 /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
-		21267B8929A0CF5600B9AD7D /* Catche.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catche.swift; sourceTree = "<group>"; };
+		21267B8929A0CF5600B9AD7D /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		21267B8B29A0E78A00B9AD7D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		212AC5D8299F73B5009F58FC /* ExtensionForImagePresentViewControllerForUIElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionForImagePresentViewControllerForUIElements.swift; sourceTree = "<group>"; };
 		212AC5DB299FA30C009F58FC /* IImagePresentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IImagePresentViewController.swift; sourceTree = "<group>"; };
 		212AC5DD299FA31A009F58FC /* IImagePresentInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IImagePresentInteractor.swift; sourceTree = "<group>"; };
@@ -178,7 +178,6 @@
 			children = (
 				210B8E8A299CBF8B00499ABA /* GoogleImageAPI.swift */,
 				210B8EB2299D3AA000499ABA /* ImageData.swift */,
-				210BF93F299E9AE8007D9072 /* ImageInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -209,7 +208,8 @@
 		210B8EA5299CC25B00499ABA /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				21267B8929A0CF5600B9AD7D /* Catche.swift */,
+				21267B8929A0CF5600B9AD7D /* Cache.swift */,
+				21267B8B29A0E78A00B9AD7D /* Storage.swift */,
 				210B8EB4299D3C1F00499ABA /* INetworkService.swift */,
 				210B8EA3299CC25300499ABA /* NetworkService.swift */,
 				210B8EB6299D3E9B00499ABA /* JsonParser.swift */,
@@ -347,7 +347,8 @@
 				210B8EB9299D427C00499ABA /* ImageDataCreator.swift in Sources */,
 				210B8EAE299CCA0100499ABA /* IMainInteractor.swift in Sources */,
 				212AC5E0299FA329009F58FC /* IImagePresentPresenter.swift in Sources */,
-				21267B8A29A0CF5600B9AD7D /* Catche.swift in Sources */,
+				21267B8C29A0E78A00B9AD7D /* Storage.swift in Sources */,
+				21267B8A29A0CF5600B9AD7D /* Cache.swift in Sources */,
 				210B8E90299CBFB900499ABA /* IRouter.swift in Sources */,
 				210B8E81299CBEF900499ABA /* MainPresenter.swift in Sources */,
 				212AC5DE299FA31A009F58FC /* IImagePresentInteractor.swift in Sources */,
@@ -367,7 +368,6 @@
 				210B8E9B299CC12D00499ABA /* ImagePresentPresenter.swift in Sources */,
 				210B8E94299CC08000499ABA /* ImagePresentViewController.swift in Sources */,
 				210B8E8B299CBF8B00499ABA /* GoogleImageAPI.swift in Sources */,
-				210BF940299E9AE8007D9072 /* ImageInfo.swift in Sources */,
 				210B8E83299CBF0900499ABA /* MainInteractor.swift in Sources */,
 				210B8EAC299CC9F400499ABA /* IMainViewController.swift in Sources */,
 				21D6E5FC299FE398004483C5 /* IWebViewController.swift in Sources */,

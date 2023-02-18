@@ -33,4 +33,13 @@ class ImagePresentViewController: UIViewController {
         addTargetForNextButton()
         addTargetForGoToWebButton()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        reloadElements()
+    }
+    
+    deinit {
+        print("IMAGE")
+    }
 }

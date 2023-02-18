@@ -9,6 +9,6 @@ import UIKit
 
 protocol IBuilder {
     func createMainViewController(router: IRouter) -> UIViewController
-    func createImagePresentViewController(router: IRouter, imagesData: [ImageData], indexTappedImage: Int) -> UIViewController
+    func createImagePresentViewController(router: IRouter, indexTappedImage: Int) -> UIViewController
     func createWebViewController(router: IRouter, webUrl: String) -> UIViewController
 }

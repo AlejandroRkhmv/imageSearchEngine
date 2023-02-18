@@ -12,16 +12,13 @@ class ImagePresentPresenter: IImagePresentPresenter {
     weak var imagePresentViewController: IImagePresentViewController?
     var imagePresentInteractor: IImagePresentInteractor
     var router: IRouter
-    var imagesData: [ImageData]
     var indexTappedImage: Int
     
-    required init(imagePresentViewController: IImagePresentViewController, imagePresentInteractor: IImagePresentInteractor, router: IRouter, imagesData: [ImageData], indexTappedImage: Int) {
+    required init(imagePresentViewController: IImagePresentViewController, imagePresentInteractor: IImagePresentInteractor, router: IRouter, indexTappedImage: Int) {
         self.imagePresentViewController = imagePresentViewController
         self.imagePresentInteractor = imagePresentInteractor
         self.router = router
-        self.imagesData = imagesData
         self.indexTappedImage = indexTappedImage
-        imagePresentInteractor.imagesData = imagesData
     }
     
     func showTappedImage() {
@@ -45,7 +42,7 @@ class ImagePresentPresenter: IImagePresentPresenter {
     }
     
     func userTappedNextButton() {
-        guard indexTappedImage < imagesData.count - 1 else { return }
+        guard indexTappedImage < Storage.imagesData.count - 1 else { return }
         indexTappedImage += 1
         DispatchQueue.global().async {
             let image = self.imagePresentInteractor.getImageForUser(index: self.indexTappedImage)
@@ -56,7 +53,7 @@ class ImagePresentPresenter: IImagePresentPresenter {
     }
     
     func userTappedGoToWebButton() {
-        let webUrl = imagesData[indexTappedImage].webLink
+        let webUrl = Storage.imagesData[indexTappedImage].webLink
         router.pushWebViewController(webUrl: webUrl)
     }
 }

@@ -24,9 +24,9 @@ class MainRouter: IRouter {
         }
     }
     
-    func pushImagePresentViewController(imagesData: [ImageData], indexTappedImage: Int) {
+    func pushImagePresentViewController(indexTappedImage: Int) {
         if let navigationController = navigationController {
-            guard let imagePresentVC = builder?.createImagePresentViewController(router: self, imagesData: imagesData, indexTappedImage: indexTappedImage) else { return }
+            guard let imagePresentVC = builder?.createImagePresentViewController(router: self, indexTappedImage: indexTappedImage) else { return }
             navigationController.pushViewController(imagePresentVC, animated: false)
         }
     }

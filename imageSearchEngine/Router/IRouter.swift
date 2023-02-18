@@ -13,7 +13,7 @@ protocol IRouterInit {
 }
 
 protocol IRouterPush {
-    func pushImagePresentViewController(imagesData: [ImageData], indexTappedImage: Int)
+    func pushImagePresentViewController(indexTappedImage: Int)
     func pushWebViewController(webUrl: String)
 }
 

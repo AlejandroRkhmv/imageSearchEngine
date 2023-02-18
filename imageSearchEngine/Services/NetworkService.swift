@@ -30,13 +30,30 @@ class NetworkService: INetworkService {
     }
     
     func loadImage(from urlString: String, completionImage: @escaping (UIImage) -> Void) {
-        if let image = Catche.cache.object(forKey: urlString as AnyObject) {
+        if let image = Cache.cache.object(forKey: urlString as AnyObject) {
             completionImage(image)
         } else {
             guard let url = URL(string: urlString) else { return }
-            guard let data = try? Data(contentsOf: url) else { return }
+            guard let data = try? Data(contentsOf: url) else {
+                let noDataImage = loadNoData()
+                completionImage(noDataImage)
+                return }
             guard let image = UIImage(data: data) else { return }
+            Cache.cache.setObject(image, forKey: urlString as AnyObject)
             completionImage(image)
+        }
+    }
+    
+    private func loadNoData() -> UIImage {
+        let urlString = Storage.noDataUrlString
+        if let image = Cache.cache.object(forKey: urlString as AnyObject) {
+            return image
+        } else {
+            guard let url = URL(string: urlString) else { return UIImage() }
+            guard let data = try? Data(contentsOf: url) else { return UIImage() }
+            guard let image = UIImage(data: data) else { return UIImage() }
+            Cache.cache.setObject(image, forKey: urlString as AnyObject)
+            return image
         }
     }
 }

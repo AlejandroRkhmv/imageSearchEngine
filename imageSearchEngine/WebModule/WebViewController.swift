@@ -28,4 +28,13 @@ class WebViewController: UIViewController {
         createBackButton()
         customBackButton()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        reloadElements()
+    }
+    
+    deinit {
+        print("WEB")
+    }
 }

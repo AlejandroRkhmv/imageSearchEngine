@@ -37,5 +37,19 @@ class MainViewController: UIViewController {
         cancelButtonTarget()
         makeActivityIndicator()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        reloadElements()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        dismiss(animated: false)
+        view.removeFromSuperview()
+    }
+    deinit {
+        print("MAIN")
+    }
 }
 

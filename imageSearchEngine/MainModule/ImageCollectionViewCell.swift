@@ -10,6 +10,8 @@ import UIKit
 class ImageCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "image"
+    var netvorkService = NetworkService()
+    var delegate: MainViewControllerCellDelegate?
     
     var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .medium)
@@ -32,21 +34,11 @@ class ImageCollectionViewCell: UICollectionViewCell {
             imageView.image = nil
             if let urlForImage = urlForImage {
                 DispatchQueue.global().async {
-                    if let image = Catche.cache.object(forKey: urlForImage as AnyObject) {
+                    self.delegate?.loadImage(from: urlForImage) { image in
                         DispatchQueue.main.async {
                             self.imageView.image = image
                             self.imageView.backgroundColor = self.contentView.backgroundColor
                             self.activityIndicator.stopAnimating()
-                        }
-                    } else {
-                        guard let url = URL(string: urlForImage) else { return }
-                        guard let data = try? Data(contentsOf: url) else { return }
-                        DispatchQueue.main.async {
-                            self.imageView.image = UIImage(data: data)
-                            self.imageView.backgroundColor = self.contentView.backgroundColor
-                            self.activityIndicator.stopAnimating()
-                            guard let image = UIImage(data: data) else { return }
-                            Catche.cache.setObject(image, forKey: urlForImage as AnyObject)
                         }
                     }
                 }

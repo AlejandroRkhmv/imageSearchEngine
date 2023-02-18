@@ -142,8 +142,17 @@ extension ImagePresentViewController {
     private func pop() {
         imagePresentPresenter!.router.popViewController()
     }
+    
+    // MARK: - reloadElements
+    func reloadElements() {
+        chooseImageView.removeFromSuperview()
+        prevButton.removeFromSuperview()
+        nextButton.removeFromSuperview()
+        goToWebButton.removeFromSuperview()
+    }
 }
 
+// MARK: - IImagePresentViewController
 extension ImagePresentViewController: IImagePresentViewController {
     func setImage(image: UIImage) {
         chooseImageView.image = image

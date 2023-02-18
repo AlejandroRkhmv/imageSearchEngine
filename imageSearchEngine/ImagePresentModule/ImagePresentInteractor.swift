@@ -18,7 +18,7 @@ class ImagePresentInteractor: IImagePresentInteractor {
     
     func getImageForUser(index: Int) -> UIImage {
         var forReturnimage = UIImage()
-        let urlString = imagesData[index].imageUrl
+        let urlString = Storage.imagesData[index].imageUrl
         networkService.loadImage(from: urlString) { image in
             forReturnimage = image
         }

@@ -7,12 +7,6 @@
 
 import UIKit
 
-// MARK: - MainViewControllerDelegate
-protocol MainViewControllerDelegate {
-    func sendRequestToMainPresenter(request: String)
-}
-
-
 // MARK: - create UI elements
 extension MainViewController {
     
@@ -58,8 +52,13 @@ extension MainViewController {
 
     // MARK: - createImagesCollectionView
     func createImagesCollectionView() {
+        guard let statusBarHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.size.height else { return }
+        guard let navigationBarHeight = navigationController?.navigationBar.bounds.size.height else { return }
+        let topBarHeight = statusBarHeight + navigationBarHeight
+        let heightSubtraction = topBarHeight + searchTextFieldView.frame.size.height + searchLabelView.frame.size.height
+        
         let layout = UICollectionViewFlowLayout()
-        imagesCollectionView = UICollectionView(frame: CGRect(x: 20, y: 300, width: view.bounds.size.width - 40, height: view.bounds.size.height - 200), collectionViewLayout: layout)
+        imagesCollectionView = UICollectionView(frame: CGRect(x: 20, y: 300, width: view.bounds.size.width - 40, height: view.bounds.size.height - heightSubtraction), collectionViewLayout: layout)
         imagesCollectionView?.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
         guard let collectionView = imagesCollectionView else { return }
         imagesCollectionView?.delegate = self
@@ -179,7 +178,7 @@ extension MainViewController {
         self.requestLabelView.frame.origin.y = 225
         self.imagesCollectionView?.frame.origin.y = 300
         self.cancelButton.isHidden = true
-        self.trailingConstraint.constant -= CGFloat(100)
+        self.trailingConstraint.constant = 20
         self.searchTextField.text = ""
     }
 
@@ -189,7 +188,6 @@ extension MainViewController {
         requestLabel.font = UIFont(name: "Courier", size: 30)
         requestLabel.textColor = .black
         requestLabel.textAlignment = .center
-        requestLabel.text = ""
         requestLabelView.addSubview(requestLabel)
     }
 
@@ -215,8 +213,22 @@ extension MainViewController {
     }
     
     private func setConstraintsForActivityIndicator() {
-        activityIndicator.centerXAnchor.constraint(equalTo: imagesCollectionView!.centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(equalTo: imagesCollectionView!.centerYAnchor).isActive = true
+        guard let imagesCollectionView = imagesCollectionView else { return }
+        activityIndicator.centerXAnchor.constraint(equalTo: imagesCollectionView.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: imagesCollectionView.centerYAnchor).isActive = true
+    }
+    
+    // MARK: - reloadElements
+    func reloadElements() {
+        imagesCollectionView?.removeFromSuperview()
+        searchLabelView.removeFromSuperview()
+        searchLabel.removeFromSuperview()
+        requestLabelView.removeFromSuperview()
+        searchTextFieldView.removeFromSuperview()
+        searchTextField.removeFromSuperview()
+        cancelButton.removeFromSuperview()
+        requestLabel.removeFromSuperview()
+        activityIndicator.removeFromSuperview()
     }
 }
 
@@ -230,6 +242,7 @@ extension MainViewController: UITextFieldDelegate {
             requestLabel.text = requestText
             searchTextField.resignFirstResponder()
             activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
             return true
         }
         return false
