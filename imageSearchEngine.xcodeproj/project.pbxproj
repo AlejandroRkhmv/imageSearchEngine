@@ -83,6 +83,7 @@
 		212AC5DB299FA30C009F58FC /* IImagePresentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IImagePresentViewController.swift; sourceTree = "<group>"; };
 		212AC5DD299FA31A009F58FC /* IImagePresentInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IImagePresentInteractor.swift; sourceTree = "<group>"; };
 		212AC5DF299FA329009F58FC /* IImagePresentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IImagePresentPresenter.swift; sourceTree = "<group>"; };
+		21784F4B29A1F528007657B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		21D6E5FB299FE398004483C5 /* IWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWebViewController.swift; sourceTree = "<group>"; };
 		21D6E5FD299FE3B1004483C5 /* IWebPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWebPresenter.swift; sourceTree = "<group>"; };
 		21D6E600299FE409004483C5 /* ExtensionForWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionForWebViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +103,7 @@
 		210B8E5C299CBAB500499ABA = {
 			isa = PBXGroup;
 			children = (
+				21784F4B29A1F528007657B4 /* README.md */,
 				210B8E67299CBAB500499ABA /* imageSearchEngine */,
 				210B8E66299CBAB500499ABA /* Products */,
 			);
